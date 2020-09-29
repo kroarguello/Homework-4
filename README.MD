@@ -19,3 +19,10 @@ Timer will start as soon its accepted.
 it will show question with multiple choices 
 If the answer is incorrect. It will be a penalty in the timer
 The score with the initials of the student will be storage 
+
+Notes:
+Question #1 = Correct Answer #4
+Question #2 = Correct Answer #2
+Question #3 = Correct Answer #3
+Question #4 = Correct Answer #1
+Question #5 = Correct Answer #2

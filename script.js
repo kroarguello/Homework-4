@@ -28,7 +28,7 @@ var question1 = ["Class brown",".brown{}","#brown",".clase" ];
 var question2 = [".IdofElement",".ElemenId","#nameId","var Id" ];
 var question3 = ["return (a+b)","return the sum;","sum ()","All of them" ];
 var question4 = ["color of bacground is blue","background-color: white;","background: this is white","none" ];
-
+var getScorepQ = 0;
 
 var answerEl = document.querySelector("#answer")
 var questionEl = document.querySelector("#questions")
@@ -189,34 +189,50 @@ function secondanswer(){
 
 function score(){
 
- //   var scoreQ = document.querySelector("input");
-  //  var ansQuestion = scoreQ.getAttribute("value");
-   
-
- //   for ( var y=0; y < 4; y++){
- //       if(ansQuestion[y].Checked == true ){
- //           alert(ansQuestion[y].value + "you got a value");
- //           
-   //     }
-    
-  //  }
-    
-  // alert("valor de lo que escogio  " + ansQuestion);
   var elementos = document.getElementsByName("pregunta");
+  
+  var pointGood = 0;
 
   for(var y=0; y<elementos.length;y++){
      var elementoValue = elementos[y].value;
      var elementoSelecc = elementos[y].checked;
      if (elementoSelecc == true ){
-        alert( " Elemento :" + elementos[y].value + "\n Seleccionado: " + elementos[y].checked);
+
+        if ( getScorepQ == 0 && elementos[3].checked == true ) {
+            pointGood++;
+            var messpoint = " CORRECT answer !!!";
+            getScorepQ++;
+            
+        }else if (getScorepQ == 1 && elementos[1].checked == true){
+            pointGood++;
+            var messpoint = " CORRECT answer !!!";
+            getScorepQ++;
+
+        }else if (getScorepQ == 2 && elementos[2].checked == true){
+            pointGood++;
+            var messpoint = " CORRECT answer !!!";
+            getScorepQ++;
+        }else if (getScorepQ == 3 && elementos[0].checked == true){
+                pointGood++;
+                var messpoint = " CORRECT answer !!!" ;
+                getScorepQ++;
+            } else if (getScorepQ == 4 && elementos[1].checked == true){
+                pointGood++;
+                var messpoint = " CORRECT answer !!!";
+                getScorepQ++;
+            }
+
+        else{
+            var messpoint = " INCORRECT answer."
+            getScorepQ++;
+        }
+
+
+
+        alert( " Your answer is :   " + elementos[y].value + "\n That is a  : " + messpoint );
+
      }
-     else if (elementoSelecc == false){
-         alert ("NO lo selecciono  ");
-     }
-     else {
-         alert ("no click en nada");
-     }
-    
+      
 
   }
      

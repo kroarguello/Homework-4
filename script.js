@@ -8,7 +8,7 @@ function timerStart() {
   var timeInterval = setInterval(function() {
     timerEl.textContent = timeLeft + " seconds remaining";
     timeLeft--;
-
+ 
     if (timeLeft === 0) {
       timerEl.textContent = "Finish";
       clearInterval(timeInterval);
@@ -29,6 +29,8 @@ var question2 = [".IdofElement",".ElemenId","#nameId","var Id" ];
 var question3 = ["return (a+b)","return the sum;","sum ()","All of them" ];
 var question4 = ["color of bacground is blue","background-color: white;","background: this is white","none" ];
 var getScorepQ = 0;
+var pointGood = 0;
+
 
 var answerEl = document.querySelector("#answer")
 var questionEl = document.querySelector("#questions")
@@ -54,10 +56,12 @@ button2El.addEventListener("click", function(){
         
         i++;
 
-
-
-                if(i > questionTest.length){
-                    var initials = prompt("No more questions, type your Initials");
+    if(i > questionTest.length){
+         var initials = prompt("No more questions, type your Initials");
+                    
+        //    localStorage.getItem("initials");
+            var mio = localStorage.getItem(pointGood) ;
+                    alert ( initials + " ,  Your score is " + mio );
                     estado=0;
                     button2El.textContent = "Lets Do It !!";
                     questionEl.textContent = "Do you want to do the Knowledge Test";
@@ -66,6 +70,8 @@ button2El.addEventListener("click", function(){
                }
         }
   })
+
+
 
     
 // Questions and Answers
@@ -136,8 +142,6 @@ function secondanswer(){
     
         }
 
-
-
         if (i == 3 ) {
     
             for(var x=0; x < question3.length; x++){
@@ -150,11 +154,9 @@ function secondanswer(){
                 lab001.textContent = question3[x];
                 var newdiv = document.createElement("div");
         
-                 answerEl.appendChild(newdiv); 
-      
-        
-                answerEl.appendChild(question011);
-                answerEl.appendChild(lab001);
+               answerEl.appendChild(newdiv); 
+               answerEl.appendChild(question011);
+               answerEl.appendChild(lab001);
             }
         
             }
@@ -184,14 +186,13 @@ function secondanswer(){
 
 
 
-
+//Get Score if CORRECT or INCORRECT answer
 
 
 function score(){
 
   var elementos = document.getElementsByName("pregunta");
   
-  var pointGood = 0;
 
   for(var y=0; y<elementos.length;y++){
      var elementoValue = elementos[y].value;
@@ -229,13 +230,22 @@ function score(){
 
 
 
-        alert( " Your answer is :   " + elementos[y].value + "\n That is a  : " + messpoint );
-
+        alert( " Your answer is   :   " + elementos[y].value + "\n That is a  : " + messpoint );
      }
-      
+  
+        
 
   }
-     
+
+  alert ("Your score is " + pointGood);
+
+}
+
+function stopQuestions (){
+
+
+
+
 }
 
 

@@ -1,25 +1,31 @@
-function setTime() {
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-  
-      if(secondsLeft === 0) {
-        clearInterval(timerInterval);
-        sendMessage();
-      }
-  
-    }, 1000);
+function timerStart() {
+      
+ var timerEl = document.querySelector("#timer");
+ var timeLeft = 20;
+
+  var timeInterval = setInterval(function() {
+    timerEl.textContent = timeLeft + " seconds remaining";
+    timeLeft--;
+
+    if (timeLeft === 0) {
+      timerEl.textContent = "Finish";
+      clearInterval(timeInterval);
+    }
+
+  }, 1000);
   }
+
+
 
 //Function Click for start the test and continue with questions
 var estado = 0;
 var button2El = document.querySelector("#button2");
-var questionTest = ["Como se llama el gato","Como se llama el perro", "Que color es el gato", "Que partes tiene el gato", "Que color son los ojos"]
-var question0 = ["Leopoldo","Vigotes","Mishi","Cowy" ];
-var question1 = ["Lukas","Coffee","Spike","Blue" ];
-var question2 = ["blanco","anaranjado","negro","gris" ];
-var question3 = ["orejas","patas","cola","todas" ];
-var question4 = ["rojos","amarillos","negro","Morados" ];
+var questionTest = ["1 ) How do you declare a variable"," 2 ) What is a class", " 3 ) What is a Id", " 4 ) How do you return a sum in a function", "5 ) How do you give color to the background"]
+var question0 = ["var variable","var nameofVariable","variableName=8","var variableName=8" ];
+var question1 = ["Class brown",".brown{}","#brown",".clase" ];
+var question2 = [".IdofElement",".ElemenId","#nameId","var Id" ];
+var question3 = ["return (a+b)","return the sum;","sum ()","All of them" ];
+var question4 = ["color of bacground is blue","background-color: white;","background: this is white","none" ];
 
 
 var answerEl = document.querySelector("#answer")
@@ -31,6 +37,7 @@ button2El.addEventListener("click", function(){
     if(estado == 0){
         alert("You are going to start you knowledge Test, Are you ready ?");
         estado++;
+        timerStart();
         firstanswer();     
         
         i++;  
@@ -40,12 +47,15 @@ button2El.addEventListener("click", function(){
 
         
         questionEl.textContent = questionTest[i];
-         
+        
         secondanswer();
+        score();
         i++;
 
+
+
                 if(i > questionTest.length){
-                    alert("se termino");
+                    var initials = prompt("No more questions, type your Initials");
                     estado=0;
                     button2El.textContent = "Lets Do It !!";
                     questionEl.textContent = "Do you want to do the Knowledge Test";
@@ -60,8 +70,8 @@ button2El.addEventListener("click", function(){
 
 function firstanswer (){
     questionEl.textContent = questionTest[i];
-    button2El.textContent ="next";
-
+    button2El.textContent ="Next question";
+    
     for(var x=0; x < question0.length; x++){
         var question011 = document.createElement ("input");
         question011.setAttribute( "name", "pregunta" );    
@@ -70,8 +80,10 @@ function firstanswer (){
         
         var lab001=document.createElement("span" );
         lab001.textContent = question0[x] + "";
-      
-
+        
+        var newdiv = document.createElement("div");
+        
+        answerEl.appendChild(newdiv);
         answerEl.appendChild(question011);
         answerEl.appendChild(lab001);
     }
@@ -80,18 +92,21 @@ function firstanswer (){
 
 function secondanswer(){
     
-
+    answerEl.textContent="";
     if (i == 1 ) {
     
     for(var x=0; x < question1.length; x++){
         var question011 = document.createElement ("input");
+        
         question011.setAttribute( "name", "pregunta" );    
         question011.setAttribute("type","radio");
         question011.setAttribute("value", question1[x]);    
         
         var lab001=document.createElement("span" );
         lab001.textContent = question1[x] + "";
-
+        var newdiv = document.createElement("div");
+        
+        answerEl.appendChild(newdiv);
         answerEl.appendChild(question011);
         answerEl.appendChild(lab001);
     }
@@ -109,7 +124,10 @@ function secondanswer(){
             
             var lab001=document.createElement("span" );
             lab001.textContent = question2[x] + "";
-   
+            var newdiv = document.createElement("div");
+        
+            answerEl.appendChild(newdiv);
+            
             answerEl.appendChild(question011);
             answerEl.appendChild(lab001);
         }
@@ -127,7 +145,10 @@ function secondanswer(){
                 question011.setAttribute("value", question3[x]);    
                 
                 var lab001=document.createElement("span" );
-                lab001.textContent = question3[x] + "";
+                lab001.textContent = question3[x];
+                var newdiv = document.createElement("div");
+        
+                 answerEl.appendChild(newdiv); 
       
         
                 answerEl.appendChild(question011);
@@ -146,16 +167,27 @@ function secondanswer(){
                     question011.setAttribute("value", question4[x]);    
                     
                     var lab001=document.createElement("span" );
-                    lab001.textContent = question4[x] + "";
+                    lab001.textContent = question4[x];
             
+                    var newdiv = document.createElement("div");
+        
+                    answerEl.appendChild(newdiv);
                     answerEl.appendChild(question011);
                     answerEl.appendChild(lab001);
                 }
             
                 }   
              
-      
+}
 
+
+function score(){
+
+    var scoreQ = document.getElementsByName("pregunta");
+    var a = scoreQ.value;
+ 
+   
+    alert("Your answer is " + a);
 
 }
 

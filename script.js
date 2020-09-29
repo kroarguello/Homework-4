@@ -1,7 +1,9 @@
+
+// Timer
 function timerStart() {
       
  var timerEl = document.querySelector("#timer");
- var timeLeft = 20;
+ var timeLeft = 40;
 
   var timeInterval = setInterval(function() {
     timerEl.textContent = timeLeft + " seconds remaining";
@@ -47,9 +49,9 @@ button2El.addEventListener("click", function(){
 
         
         questionEl.textContent = questionTest[i];
-        
-        secondanswer();
         score();
+        secondanswer();
+        
         i++;
 
 
@@ -66,7 +68,7 @@ button2El.addEventListener("click", function(){
   })
 
     
-
+// Questions and Answers
 
 function firstanswer (){
     questionEl.textContent = questionTest[i];
@@ -181,14 +183,43 @@ function secondanswer(){
 }
 
 
+
+
+
+
 function score(){
 
-    var scoreQ = document.getElementsByName("pregunta");
-    var a = scoreQ.value;
- 
+ //   var scoreQ = document.querySelector("input");
+  //  var ansQuestion = scoreQ.getAttribute("value");
    
-    alert("Your answer is " + a);
 
+ //   for ( var y=0; y < 4; y++){
+ //       if(ansQuestion[y].Checked == true ){
+ //           alert(ansQuestion[y].value + "you got a value");
+ //           
+   //     }
+    
+  //  }
+    
+  // alert("valor de lo que escogio  " + ansQuestion);
+  var elementos = document.getElementsByName("pregunta");
+
+  for(var y=0; y<elementos.length;y++){
+     var elementoValue = elementos[y].value;
+     var elementoSelecc = elementos[y].checked;
+     if (elementoSelecc == true ){
+        alert( " Elemento :" + elementos[y].value + "\n Seleccionado: " + elementos[y].checked);
+     }
+     else if (elementoSelecc == false){
+         alert ("NO lo selecciono  ");
+     }
+     else {
+         alert ("no click en nada");
+     }
+    
+
+  }
+     
 }
 
 

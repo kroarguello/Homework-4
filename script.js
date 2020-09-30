@@ -1,13 +1,14 @@
-
+var timeInterval;
 // Timer
 function timerStart() {
       
  var timerEl = document.querySelector("#timer");
  var timeLeft = 40;
 
-  var timeInterval = setInterval(function() {
+  timeInterval = setInterval(function() {
     timerEl.textContent = timeLeft + " seconds remaining";
     timeLeft--;
+    
  
     if (timeLeft === 0) {
       timerEl.textContent = "Finish";
@@ -31,7 +32,7 @@ var question4 = ["color of bacground is blue","background-color: white;","backgr
 var getScorepQ = 0;
 var pointGood = 0;
 
-
+var historyEl = document.querySelector("#button1")
 var answerEl = document.querySelector("#answer")
 var questionEl = document.querySelector("#questions")
 var i=0;
@@ -58,17 +59,30 @@ button2El.addEventListener("click", function(){
 
     if(i > questionTest.length){
          var initials = prompt("No more questions, type your Initials");
+         var temp = JSON.parse(localStorage.getItem("userInfo")) || [];
+         var userData = {
+             initial: initials,
+             scores:pointGood
+         }
+         temp.push(userData);
+         localStorage.setItem("userInfo", JSON.stringify(temp));
+         
+         for(var x=0;x<temp.length;x++){
+             var li = document.createElement("li");
+             li.textContent = temp[x].initial + " " +temp[x].scores;
+            // document.getElementById("list-initials").appendChild(li);
+         }
                     
-        //    localStorage.getItem("initials");
-            var mio = localStorage.getItem(pointGood) ;
-                    alert ( initials + " ,  Your score is " + mio );
+        
+           
+                    alert ( initials + " ,  Your score is " + pointGood + " of 5" );
                     estado=0;
-                    button2El.textContent = "Lets Do It !!";
+                    button2El.textContent = "Lets Do It !! Click me";
                     questionEl.textContent = "Do you want to do the Knowledge Test";
                     i=0;
         
                }
-        }
+            }
   })
 
 
@@ -179,6 +193,9 @@ function secondanswer(){
                     answerEl.appendChild(question011);
                     answerEl.appendChild(lab001);
                 }
+                //i++;
+                
+                clearInterval(timeInterval);
             
                 }   
              
@@ -226,27 +243,36 @@ function score(){
         else{
             var messpoint = " INCORRECT answer."
             getScorepQ++;
+//          
         }
-
-
 
         alert( " Your answer is   :   " + elementos[y].value + "\n That is a  : " + messpoint );
      }
   
-        
+   }
 
-  }
-
-  alert ("Your score is " + pointGood);
+ 
 
 }
 
 function stopQuestions (){
-
-
-
-
+    if(i===4){
+        clearInterval(timeInterval);
+    }
 }
+
+historyEl.addEventListener("click", function(){
+    
+    
+    for(var x=0;x<localStorage.length;x++){
+        var clave =localStorage.getItem(localStorage.key(x)) +"\n   ";
+        
+    }     
+     alert("History \n"+clave);
+
+
+})
+
 
 
 
